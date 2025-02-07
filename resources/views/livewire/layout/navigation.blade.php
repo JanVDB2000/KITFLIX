@@ -16,22 +16,42 @@ new class extends Component
     }
 }; ?>
 
-<nav x-data="{ open: false }" class="bg-gray-800 border-b border-gray-700">
+<nav x-data="{ open: false }" class="absolute w-full z-30">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="px-10">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}" wire:navigate>
+                    <a href="{{ route('browse') }}" wire:navigate>
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
-                        {{ __('Dashboard') }}
+                    <x-nav-link :href="route('browse')" :active="request()->routeIs('browse')" wire:navigate>
+                        {{ __('Home') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('series')" :active="request()->routeIs('series')" wire:navigate>
+                        {{ __('TV Shows') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('movies')" :active="request()->routeIs('movies')" wire:navigate>
+                        {{ __('Movies') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('latest')" :active="request()->routeIs('latest')" wire:navigate>
+                        {{ __('New & Popular') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('mylist')" :active="request()->routeIs('mylist')" wire:navigate>
+                        {{ __('My List') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('lang')" :active="request()->routeIs('lang')" wire:navigate>
+                        {{ __('Browse by Languages') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -41,7 +61,7 @@ new class extends Component
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
-                            <div x-data="{{ json_encode(['name' => auth()->user()->name]) }}" x-text="name" x-on:profile-updated.window="name = $event.detail.name"></div>
+                            <div x-data="{{ json_encode(['name' => currentProfile()->profile_name]) }}" x-text="name" x-on:profile-updated.window="name = $event.detail.name"></div>
 
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -52,8 +72,8 @@ new class extends Component
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile')" wire:navigate>
-                            {{ __('Profile') }}
+                        <x-dropdown-link :href="route('account')" wire:navigate>
+                            {{ __('Account') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
@@ -81,7 +101,7 @@ new class extends Component
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
+            <x-responsive-nav-link :href="route('browse')" :active="request()->routeIs('browse')" wire:navigate>
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
         </div>
@@ -89,13 +109,13 @@ new class extends Component
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
             <div class="px-4">
-                <div class="font-medium text-base text-gray-800 dark:text-gray-200" x-data="{{ json_encode(['name' => auth()->user()->name]) }}" x-text="name" x-on:profile-updated.window="name = $event.detail.name"></div>
+                <div class="font-medium text-base text-gray-800 dark:text-gray-200" x-data="{{ json_encode(['name' => auth()->user()->name]) }}" x-text="name" x-on:account-updated.window="name = $event.detail.name"></div>
                 <div class="font-medium text-sm text-gray-500">{{ auth()->user()->email }}</div>
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile')" wire:navigate>
-                    {{ __('Profile') }}
+                <x-responsive-nav-link :href="route('account')" wire:navigate>
+                    {{ __('account') }}
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->

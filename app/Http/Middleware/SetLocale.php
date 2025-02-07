@@ -13,14 +13,12 @@ class SetLocale
     {
         $locale = $request->segment(1);
 
-        // Controleer of de taal in de config beschikbaar is
         if (!in_array($locale, Config::get('languages.available'))) {
-            $locale = Config::get('languages.default'); // Standaardtaal
+            $locale = Config::get('languages.default');
         }
 
-        // Sla de taal op in de sessie en stel deze in
         Session::put('locale', $locale);
-        App::setLocale($locale); // ✅ Zorg dat je `Illuminate\Support\Facades\App` gebruikt
+        App::setLocale($locale);
 
         return $next($request);
     }

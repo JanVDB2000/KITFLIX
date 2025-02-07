@@ -2,30 +2,21 @@
 
 use App\Http\Controllers\BrowseController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\LanguageController;
-use App\Http\Middleware\SetLocale;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
 
 require __DIR__.'/auth.php';
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
-
-Route::view('profile', 'profile')
-    ->middleware(['auth'])
-    ->name('profile');
-
-// Redirect automatisch naar de standaardtaal als er geen taal in de URL staat
-Route::get('/', function () {
-    $defaultLang = Config::get('languages.default', 'nl');
-    return redirect("/$defaultLang");
-});
-// Dynamische routes met taalprefix en middleware
-Route::middleware([SetLocale::class])->group(function () {
-    Route::prefix('{locale}/')->group(function () {
-        Route::get('/', [HomeController::class, 'index'])->name('home');
-        Route::get('/browse', [BrowseController::class, 'index'])->name('browse');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/browse', [BrowseController::class, 'index'])->name('browse');
+    Route::prefix('/browse')->group(function () {
+        Route::get('/series', [BrowseController::class, 'index'])->name('series');
+        Route::get('/movies', [BrowseController::class, 'index'])->name('movies');
+        Route::get('/latest', [BrowseController::class, 'index'])->name('latest');
+        Route::get('/mylist', [BrowseController::class, 'index'])->name('mylist');
+        Route::get('/lang', [BrowseController::class, 'index'])->name('lang');
     });
 });
+
+
+Route::view('/account', 'account')->middleware(['auth'])->name('account');
