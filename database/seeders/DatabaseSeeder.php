@@ -15,6 +15,10 @@ class DatabaseSeeder extends Seeder
     {
 
         $this->call([
+            // Content Data
+            MediaTableSeeder::class,
+            //CategoryTableSeeder::class,
+            // Gebruikers data
             UserTableSeeder::class,
         ]);
 

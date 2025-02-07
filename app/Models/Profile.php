@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Profile extends Model
 {
     use HasFactory;
+
     protected $fillable = ['user_id', 'profile_name'];
 
     /**
@@ -24,5 +25,13 @@ class Profile extends Model
     public function favorites(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Favorite::class);
+    }
+
+    /**
+     * Haal alle kijkgeschiedenis-items van dit profiel op.
+     */
+    public function watchHistories(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(WatchHistory::class);
     }
 }

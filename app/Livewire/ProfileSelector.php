@@ -3,7 +3,7 @@
 
 namespace App\Livewire;
 
-use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
 class ProfileSelector extends Component
@@ -15,7 +15,7 @@ class ProfileSelector extends Component
     public function mount(): void
     {
         $this->profiles = Auth()->user()->profiles()->get();
-        $this->selectedProfile = Cookie::get('profilesSession', null);
+        $this->selectedProfile = Session::get('profilesSession', null);
         if ($this->selectedProfile) {
             $this->showModal = false;
         }
@@ -24,7 +24,7 @@ class ProfileSelector extends Component
     public function selectProfile($id): void
     {
         $this->selectedProfile = $id;
-        Cookie::queue('profilesSession', $id, 60 * 24 * 30); // 30 dagen
+        Session::put('profilesSession',$id);
         $this->showModal = false;
     }
 

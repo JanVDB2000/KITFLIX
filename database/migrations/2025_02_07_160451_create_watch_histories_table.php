@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('episodes', function (Blueprint $table) {
+        Schema::create('watch_histories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('season_id')->constrained("seasons");
-            $table->integer('episode_number');
-            $table->string('title');
-            $table->text('description');
-            $table->string('image_url')->nullable();
-            $table->string('video_url')->nullable();
+            $table->foreignId('profile_id')->constrained('profiles')->onDelete('cascade');
+            $table->foreignId('media_id')->constrained('media')->onDelete('cascade');
+            $table->timestamp('watched_at')->nullable()->default(now());
             $table->timestamps();
         });
     }
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('episodes');
+        Schema::dropIfExists('watch_histories');
     }
 };

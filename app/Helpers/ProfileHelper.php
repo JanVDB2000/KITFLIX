@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Profile;
+use Illuminate\Support\Facades\Session;
 
 if (! function_exists('currentProfile')) {
     /**
@@ -11,8 +12,8 @@ if (! function_exists('currentProfile')) {
     function currentProfile(): ?Profile
     {
         // hij kijkt in de cookie of er een is anders pak hij de eerste
-        if (request()->cookie('profilesSession')){
-            return  Profile::findOrFail(request()->cookie('profilesSession'));
+        if (Session::get('profilesSession', null)){
+            return  Profile::findOrFail(Session::get('profilesSession', null));
         }
         return Auth()->user()->profiles()->first();
     }

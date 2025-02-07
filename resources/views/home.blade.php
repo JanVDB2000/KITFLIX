@@ -47,67 +47,7 @@
     </section>
     <section class="max-w-7xl mx-auto p-4">
         <h2 class="text-3xl font-bold text-start mb-8">Trending</h2>
-        <div class="flex space-x-4 overflow-x-auto">
-            <!-- Card 1 -->
-            <div class="relative w-36 sm:w-48 flex-shrink-0">
-                <img
-                    src="https://placehold.co/300x450.png?text=Squid+Game"
-                    alt="Squid Game"
-                    class="w-full h-auto rounded-md"
-                />
-                <div class="absolute top-2 left-2 bg-black bg-opacity-60 rounded-full px-2 py-1 text-xl font-bold">
-                    1
-                </div>
-            </div>
-
-            <!-- Card 2 -->
-            <div class="relative w-36 sm:w-48 flex-shrink-0">
-                <img
-                    src="https://placehold.co/300x450.png?text=The+Night+Agent"
-                    alt="The Night Agent"
-                    class="w-full h-auto rounded-md"
-                />
-                <div class="absolute top-2 left-2 bg-black bg-opacity-60 rounded-full px-2 py-1 text-xl font-bold">
-                    2
-                </div>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="relative w-36 sm:w-48 flex-shrink-0">
-                <img
-                    src="https://placehold.co/300x450.png?text=KK+E4"
-                    alt="Kids Movie"
-                    class="w-full h-auto rounded-md"
-                />
-                <div class="absolute top-2 left-2 bg-black bg-opacity-60 rounded-full px-2 py-1 text-xl font-bold">
-                    3
-                </div>
-            </div>
-
-            <!-- Card 4 -->
-            <div class="relative w-36 sm:w-48 flex-shrink-0">
-                <img
-                    src="https://placehold.co/300x450.png?text=Back+in+Action"
-                    alt="Back in Action"
-                    class="w-full h-auto rounded-md"
-                />
-                <div class="absolute top-2 left-2 bg-black bg-opacity-60 rounded-full px-2 py-1 text-xl font-bold">
-                    4
-                </div>
-            </div>
-
-            <!-- Card 5 -->
-            <div class="relative w-36 sm:w-48 flex-shrink-0">
-                <img
-                    src="https://placehold.co/300x450.png?text=Boy+City"
-                    alt="Boy City"
-                    class="w-full h-auto rounded-md"
-                />
-                <div class="absolute top-2 left-2 bg-black bg-opacity-60 rounded-full px-2 py-1 text-xl font-bold">
-                    5
-                </div>
-            </div>
-        </div>
+        <x-trending-media :top10Media="$top10Media" />
     </section>
     <section class="max-w-7xl mx-auto px-4 py-12">
         <h2 class="text-3xl font-bold text-start mb-8">

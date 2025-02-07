@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Media extends Model
 {
+    use HasFactory;
+
     protected $fillable = ['title', 'description', 'image_url', 'video_url', 'content_type'];
 
     /**
@@ -30,5 +33,13 @@ class Media extends Model
     public function favorites(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Favorite::class);
+    }
+
+    /**
+     * Haal alle kijkgeschiedenis-items voor dit media-item op.
+     */
+    public function watchHistories(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(WatchHistory::class);
     }
 }
