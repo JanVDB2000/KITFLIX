@@ -100,33 +100,39 @@ new class extends Component {
     </div>
 
     <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('browse')" :active="request()->routeIs('browse')" wire:navigate>
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
-        </div>
-
+    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden bg-netflixBlack">
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
             <div class="px-4">
                 <div class="font-medium text-base text-gray-800 dark:text-gray-200"
-                     x-data="{{ json_encode(['name' => auth()->user()->name]) }}" x-text="name"
-                     x-on:account-updated.window="name = $event.detail.name"></div>
-                <div class="font-medium text-sm text-gray-500">{{ auth()->user()->email }}</div>
+                     x-data="{{ json_encode(['name' => currentProfile()->profile_name]) }}" x-text="name"
+                     x-on:profile-updated.window="name = $event.detail.name"></div>
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('account')" wire:navigate>
-                    {{ __('account') }}
+                <x-responsive-nav-link :href="route('browse')" :active="request()->routeIs('browse')" wire:navigate>
+                    {{ __('Home') }}
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link :href="route('series')" :active="request()->routeIs('series')" wire:navigate>
+                    {{ __('TV Shows') }}
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link :href="route('movies')" :active="request()->routeIs('movies')" wire:navigate>
+                    {{ __('Movies') }}
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link :href="route('mylist')" :active="request()->routeIs('mylist')" wire:navigate>
+                    {{ __('My List') }}
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->
                 <button wire:click="logout" class="w-full text-start">
                     <x-responsive-nav-link>
-                        {{ __('Log Out') }}
+                        {{ __('Sign out of ') }}<span class="text-netflixRed">Kitflix</span>
                     </x-responsive-nav-link>
                 </button>
+
             </div>
         </div>
     </div>
