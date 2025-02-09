@@ -1,10 +1,11 @@
 <x-app-layout>
-    <div class="relative w-full h-[700px] bg-cover bg-center" style="background-image: url('https://placehold.co/1600x900?text=-');">
+    <div class="relative w-full h-[700px] bg-cover bg-center" style="background-image: url('{{$showMedia->image_url}}');">
         <livewire:layout.navigation />
+
         <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center p-10">
             <p class="text-5xl text-netflixRed">K <span class="text-2xl text-white">SERIES</span></p>
-            <h1 class="text-5xl font-bold">Sweet Magnolias</h1>
-            <p class="mt-2 text-lg">Teken ze, en je huwelijk met Bill Townsend is officieel voorbij.</p>
+            <h1 class="text-5xl font-bold">{{$showMedia->title}}</h1>
+            <p class="mt-2 text-lg">{{$showMedia->description}}</p>
             <div class="mt-4">
                 <a href="#" class="bg-netflixRed px-4 py-2 rounded font-bold mr-2">▶ Play</a>
                 <button class="bg-gray-500 px-4 py-2 rounded">More Info</button>

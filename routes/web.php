@@ -9,6 +9,7 @@ require __DIR__.'/auth.php';
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/browse', [BrowseController::class, 'index'])->name('browse');
+    Route::get('/browse-switch-profile', [BrowseController::class, 'switchProfile'])->name('switchprofile');
     Route::prefix('/browse')->group(function () {
         Route::get('/series', [BrowseController::class, 'index'])->name('series');
         Route::get('/movies', [BrowseController::class, 'index'])->name('movies');
