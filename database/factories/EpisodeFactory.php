@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Enums\ContentType;
+use App\Services\CatImageService;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 
@@ -22,8 +23,8 @@ class EpisodeFactory extends Factory
         return [
             'title'       => fake()->sentence,
             'description' => fake()->paragraph,
-            'image_url'   => "https://placehold.co/300x450.png",
-            'video_url'   => fake()->optional()->url,
+            'image_url'     => (new CatImageService())->getImage()?->url,
+            'video_url'     => 'https://www.youtube.com/watch?v=MlDtL2hIj-Q',
         ];
     }
 }

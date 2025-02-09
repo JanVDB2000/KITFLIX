@@ -42,4 +42,12 @@ class Media extends Model
     {
         return $this->hasMany(WatchHistory::class);
     }
+
+    /**
+     * Een media-item behoort tot een genre.
+     */
+    public function genre()
+    {
+        return $this->belongsTo(Genre::class);
+    }
 }

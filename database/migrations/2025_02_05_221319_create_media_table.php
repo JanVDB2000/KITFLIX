@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('views')->default(0);
             $table->string('video_url')->nullable();
             $table->string('content_type')->nullable();
+            $table->foreignId("genre_id");
             $table->timestamps();
         });
     }

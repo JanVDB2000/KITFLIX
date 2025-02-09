@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Enums\ContentType;
+use App\Models\Genre;
 use App\Services\CatImageService;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -30,10 +31,11 @@ class MediaFactory extends Factory
         $contentType = fake()->randomElement($contentTypes);
 
         return [
+            'genre_id'      => fake()->randomElement(Genre::all()->pluck('id')->shuffle()->toArray()),
             'title'         => fake()->sentence(3),
             'description'   => fake()->paragraph(2),
             'api_id'        => fake()->unique()->uuid,
-            'image_url'     => (new CatImageService())->getImage()->url,
+            'image_url'     => (new CatImageService())->getImage()?->url,
             'views'         => fake()->numberBetween(0, 1000),
             'video_url'     => 'https://www.youtube.com/watch?v=MlDtL2hIj-Q',
             // Gebruik de waarde van de enum voor opslag in de database.

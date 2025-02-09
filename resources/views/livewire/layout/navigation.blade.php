@@ -41,16 +41,8 @@ new class extends Component {
                         {{ __('Movies') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('latest')" :active="request()->routeIs('latest')" wire:navigate>
-                        {{ __('New & Popular') }}
-                    </x-nav-link>
-
                     <x-nav-link :href="route('mylist')" :active="request()->routeIs('mylist')" wire:navigate>
                         {{ __('My List') }}
-                    </x-nav-link>
-
-                    <x-nav-link :href="route('lang')" :active="request()->routeIs('lang')" wire:navigate>
-                        {{ __('Browse by Languages') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -77,14 +69,6 @@ new class extends Component {
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('switchprofile', currentProfile())" wire:navigate>
-                            Jan
-                        </x-dropdown-link>
-                        <x-dropdown-link :href="route('switchprofile', currentProfile())" wire:navigate>
-                            Mama
-                        </x-dropdown-link>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-700">Manage Profiles</a>
-                        <div class="border-t border-gray-700"></div>
                         <x-dropdown-link :href="route('account')" wire:navigate>
                             Account
                         </x-dropdown-link>

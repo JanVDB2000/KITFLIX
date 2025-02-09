@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Enums\ContentType;
 use App\Models\Episode;
+use App\Models\Genre;
 use App\Models\Media;
 use App\Models\Season;
 use Illuminate\Database\Seeder;
@@ -17,7 +18,7 @@ class MediaTableSeeder extends Seeder
     public function run(): void
     {
         // Maak 250 media-items aan via de factory
-        $mediaItems = Media::factory(250)->create();
+        $mediaItems = Media::factory(100)->create();
         // Loop door elk media-item
         foreach ($mediaItems as $media) {
             // Controleer of het media-item een serie is

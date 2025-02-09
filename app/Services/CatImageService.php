@@ -56,10 +56,10 @@ class CatImageService
      * Haalt een verzameling afbeeldingen op van de Cat API.
      *
      * @param int $limit Het maximale aantal afbeeldingen om op te halen (standaard 10).
-     * @return Collection Een collectie met kattenafbeeldingen.
+     * @return Collection|null Een collectie met kattenafbeeldingen.
      * @throws ConnectionException Wanneer de verbinding mislukt.
      */
-    public function getImages(int $limit = 10): Collection
+    public function getImages(int $limit = 10): ?Collection
     {
         return collect($this->ApiConnect($this->apiUrl . 'search', ['limit' => $limit]))
             ->map(fn($cat) => (object) $cat);
@@ -68,10 +68,10 @@ class CatImageService
     /**
      * Haalt één enkele kattenafbeelding op van de Cat API.
      *
-     * @return object Een object dat een kattenafbeelding bevat.
+     * @return object|null Een object dat een kattenafbeelding bevat.
      * @throws ConnectionException Wanneer de verbinding mislukt.
      */
-    public function getImage(): object
+    public function getImage(): ?object
     {
         return collect($this->ApiConnect($this->apiUrl . 'search'))
             ->map(fn($cat) => (object) $cat)
