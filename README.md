@@ -87,3 +87,17 @@ npm run build
 php artisan serve
 ```
 Je applicatie is nu toegankelijk via http://localhost:8000.
+
+
+## Dummy account
+
+Login :
+```bash
+ jan@hotmail.be
+```
+WW :
+```bash
+12345678
+```
+
+
