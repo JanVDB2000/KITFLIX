@@ -28,7 +28,7 @@ KITFLIX is een Netflix-achtige applicatie voor katten, gebouwd met de TALL-stack
 Clone de repository naar je lokale machine:
 
 ```bash
-git clone https://github.com/jouwgebruikersnaam/kitflix.git
+git clone https://github.com/janvdb2000/kitflix.git
 cd kitflix
 ```
 2. PHP dependencies installeren
